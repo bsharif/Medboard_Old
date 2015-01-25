@@ -1,0 +1,236 @@
+timestamp: 2015-01-24T12:31:59.531483
+CREATE TABLE auth_user(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name CHAR(128),
+    last_name CHAR(128),
+    email CHAR(512),
+    password CHAR(512),
+    registration_key CHAR(512),
+    reset_password_key CHAR(512),
+    registration_id CHAR(512)
+);
+success!
+timestamp: 2015-01-24T12:31:59.574906
+CREATE TABLE auth_group(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    role CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2015-01-24T12:31:59.617999
+CREATE TABLE auth_membership(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2015-01-24T12:31:59.660114
+CREATE TABLE auth_permission(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE,
+    name CHAR(512),
+    table_name CHAR(512),
+    record_id INTEGER
+);
+success!
+timestamp: 2015-01-24T12:31:59.700646
+CREATE TABLE auth_event(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    time_stamp TIMESTAMP,
+    client_ip CHAR(512),
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    origin CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2015-01-24T12:31:59.738534
+CREATE TABLE auth_cas(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    created_on TIMESTAMP,
+    service CHAR(512),
+    ticket CHAR(512),
+    renew CHAR(1)
+);
+success!
+timestamp: 2015-01-24T12:50:53.612819
+CREATE TABLE theatres(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    surgeon_name CHAR(512),
+    procedure_name CHAR(512),
+    procedure_location CHAR(512),
+    start_date_and_time TIMESTAMP,
+    estimated_duration INTEGER,
+    max_number_of_students INTEGER
+);
+success!
+timestamp: 2015-01-24T12:57:53.323732
+ALTER TABLE theatres ADD start_datee TIME;
+timestamp: 2015-01-24T12:57:53.379542
+ALTER TABLE theatres ADD start_date DATE;
+success!
+timestamp: 2015-01-24T12:58:03.430301
+ALTER TABLE theatres ADD start_time TIME;
+success!
+success!
+success!
+success!
+timestamp: 2015-01-24T13:06:04.387065
+ALTER TABLE theatres ADD theatre_name CHAR(512);
+timestamp: 2015-01-24T13:06:04.412936
+ALTER TABLE theatres ADD hospital_name TEXT;
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+timestamp: 2015-01-24T14:14:30.405076
+ALTER TABLE theatres ADD number_of_attendees INTEGER;
+timestamp: 2015-01-24T14:14:30.432742
+ALTER TABLE theatres ADD attendee_names CHAR(512);
+timestamp: 2015-01-24T14:14:30.475362
+ALTER TABLE theatres ADD max_number_of_trainees INTEGER;
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+DROP TABLE theatres;
+success!
+timestamp: 2015-01-24T14:17:55.741434
+CREATE TABLE theatres(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    surgeon_name CHAR(512),
+    procedure_name CHAR(512),
+    hospital_name TEXT,
+    theatre_name CHAR(512),
+    start_date_and_time TIMESTAMP,
+    estimated_duration INTEGER,
+    max_number_of_trainees INTEGER,
+    number_of_attendees INTEGER,
+    attendee_names CHAR(512)
+);
+success!
+DROP TABLE theatres;
+success!
+timestamp: 2015-01-24T14:18:00.872541
+CREATE TABLE theatres(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    surgeon_name CHAR(512),
+    procedure_name CHAR(512),
+    hospital_name TEXT,
+    theatre_name CHAR(512),
+    start_date_and_time TIMESTAMP,
+    estimated_duration INTEGER,
+    max_number_of_trainees INTEGER,
+    number_of_attendees INTEGER,
+    attendee_names CHAR(512)
+);
+success!
+DROP TABLE theatres;
+success!
+timestamp: 2015-01-24T14:18:02.230224
+CREATE TABLE theatres(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    surgeon_name CHAR(512),
+    procedure_name CHAR(512),
+    hospital_name TEXT,
+    theatre_name CHAR(512),
+    start_date_and_time TIMESTAMP,
+    estimated_duration INTEGER,
+    max_number_of_trainees INTEGER,
+    number_of_attendees INTEGER,
+    attendee_names CHAR(512)
+);
+success!
+DROP TABLE theatres;
+success!
+timestamp: 2015-01-24T14:18:04.856278
+CREATE TABLE theatres(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    surgeon_name CHAR(512),
+    procedure_name CHAR(512),
+    hospital_name TEXT,
+    theatre_name CHAR(512),
+    start_date_and_time TIMESTAMP,
+    estimated_duration INTEGER,
+    max_number_of_trainees INTEGER,
+    number_of_attendees INTEGER,
+    attendee_names CHAR(512)
+);
+success!
+DROP TABLE theatres;
+success!
+timestamp: 2015-01-24T14:18:07.704215
+CREATE TABLE theatres(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    surgeon_name CHAR(512),
+    procedure_name CHAR(512),
+    hospital_name TEXT,
+    theatre_name CHAR(512),
+    start_date_and_time TIMESTAMP,
+    estimated_duration INTEGER,
+    max_number_of_trainees INTEGER,
+    number_of_attendees INTEGER,
+    attendee_names CHAR(512)
+);
+success!
+timestamp: 2015-01-25T11:33:14.832999
+CREATE TABLE test(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    attendee_names TEXT
+);
+success!
+success!

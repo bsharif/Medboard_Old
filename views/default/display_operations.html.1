@@ -1,0 +1,74 @@
+{{extend 'layout.html'}}
+
+<ul style="font-size:150%;font-weight:bold" class="nav nav-pills">
+    {{if hospital == "ALL":}}
+    <li class="active">{{=A("ALL",_href=URL('display_operations'))}}</li>
+    {{else:}}
+    <li>{{=A("ALL",_href=URL('display_operations',args="ALL"))}}</li>
+    {{pass}}
+    
+    {{for location in hospital_locations:}}
+        {{if hospital == "ALL":}}
+            <li>{{=A(location,_href=URL('display_operations',args=location))}}</li>
+        {{else:}}
+            {{if location == hospital:}}
+                <li class="active">{{=A(location,_href=URL('display_operations',args=location))}}</li>
+            {{else:}}
+                <li>{{=A(location,_href=URL('display_operations',args=location))}}</li>
+            {{pass}}
+        {{pass}}
+
+    {{pass}}
+</ul>
+
+
+<h1>Procedures in {{=hospital}}</h1>
+
+<h3>Sort by</h3> 
+<ul class="nav nav-pills">
+    <h2>
+        {{=sort_type}}
+    </h2>
+    <li id=sort_start>{{=A('Start Date/Time',_href=URL('display_operations',args=[hospital,"start"]))}}</li>
+    <li>{{=A('Duration',_href=URL('display_operations',args=[hospital,"duration"]))}}</li>
+    <li>{{=A('Spaces Available',_href=URL('display_operations',args=[hospital,"spaces"]))}}</li>
+</ul>
+
+<div style="font-size:150%">
+    <table class="table">
+        <tr style="width:100%; font-weight:bold" >
+            <td>Surgeon</td>
+            <td>Procedure</td>
+            <td>Hospital</td>
+            <td>Theatre</td>
+            <td>Start Date/Time</td>
+            <td>Duration</td>
+            <td>Trainees/Max Spaces</td>
+            <td>Names</td>
+            <td>Sign Up</td>
+        </tr>
+
+        {{for row in rows:}}
+        <tr class="well">
+            <td>{{=row.surgeon_name}}</td>
+            <td>{{=row.procedure_name}}</td>
+            <td>{{=row.hospital_name}}</td>
+            <td>{{=row.theatre_name}}</td>
+            <td>{{=row.start_date_and_time}}</td>
+            <td>{{=row.estimated_duration}}</td>
+            {{if row.number_of_attendees == row.max_number_of_trainees:}}
+                <td style="font-weight:bold">{{=row.number_of_attendees}} / {{=row.max_number_of_trainees}}</td>
+            {{else:}}
+                <td>{{=row.number_of_attendees}} / {{=row.max_number_of_trainees}}</td>
+            {{pass}}
+            <td>{{=row.attendee_names}}</td>
+            {{if row.number_of_attendees < row.max_number_of_trainees:}}
+                <td>{{=A('Sign Up',_style="",_class='btn btn-primary',_href=URL('sign_up',args=row.id))}}</td>
+            {{else:}}
+                <td style="font-weight:bold">FULL</td>
+            {{pass}}
+
+        </tr>
+        {{pass}}
+
+    </table>
